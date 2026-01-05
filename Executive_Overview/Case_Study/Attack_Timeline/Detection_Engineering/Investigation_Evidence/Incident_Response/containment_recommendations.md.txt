@@ -1,0 +1,15 @@
+# Containment Recommendations
+
+- Block anomalous Run key creates: GPO restrict HKCU/HKLM\Run writes.
+- Alert on EventCode 13 + notepad.exe (LOLBin abuse).
+- Hunt: `TargetObject=*Run* NOT *edge* NOT *onedrive*`. [file:1]
+
+## Containment Recommendations
+
+No containment required.
+
+If activity had been unauthorized:
+- Disable affected persistence mechanism
+- Isolate endpoint
+- Reset impacted credentials
+- Perform full malware scan

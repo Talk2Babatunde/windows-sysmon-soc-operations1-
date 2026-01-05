@@ -1,0 +1,13 @@
+# Log Sources
+
+- Sysmon: EventCodes 12,13,14 (registry/service); config includes RegistryEvent=*Run*,*Services*.
+- Windows Security: Ingested via Splunk; 8,260+ events baseline.
+- Verified: `sc query sysmon64`; ingestion working. [file:1]
+
+## Log Sources
+
+- Sysmon Operational Logs
+- Windows Registry Telemetry
+- Process Execution Events
+
+All logs were ingested into Splunk for analysis.

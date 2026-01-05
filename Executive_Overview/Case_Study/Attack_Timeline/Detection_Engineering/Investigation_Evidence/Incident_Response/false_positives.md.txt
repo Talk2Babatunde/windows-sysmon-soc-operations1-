@@ -1,0 +1,13 @@
+# False Positives
+
+High-volume RunOnce (Edge/Windows Update)—normal. Filter: Path in C:\Windows\*, signed MS binaries. Simulation distinguished via "Fake*" naming/timing. [file:1]
+
+## False Positive Analysis
+
+This case represents a classic example of high-risk technique detection resulting in a benign outcome.
+
+Key factors preventing escalation:
+- Trusted binary paths
+- Known application behavior
+- Consistent user and host context
+- No follow-on malicious activity

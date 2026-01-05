@@ -1,0 +1,16 @@
+# MITRE ATT&CK Mapping
+
+| Technique | ID | Evidence |
+|-----------|----|----------|
+| Registry Run Keys | T1547.001 | HKCU/HKLM\Run\Fake*; EventCode 13. [file:1] |
+| Create or Modify System Process: Services | T1543.003 | FakeService binPath=notepad.exe; EventCode 12. |
+| PowerShell | T1059 | Escalation in chain (query provided). |
+
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|------|----------|----|
+| Persistence | Registry Run Keys / Startup Folder | T1547.001 |
+| Persistence | Windows Service | T1543.003 |
+
+The techniques were detected but validated as legitimate usage.

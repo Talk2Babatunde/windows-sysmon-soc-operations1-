@@ -1,0 +1,3 @@
+index=sysmon EventCode=1
+| search CommandLine="*-enc*" OR CommandLine="*-EncodedCommand*"
+| table _time User Image CommandLine ParentImage Hostname

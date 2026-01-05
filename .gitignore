@@ -1,0 +1,35 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Log files and raw data
+*.log
+*.evtx
+sysmon*.*
+*.csv
+window-logs-*.docx
+
+# Splunk outputs and screenshots (keep committed versions)
+*.splunk
+*.json~ 
+dashboards/*.json~
+*.png~
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+*.key
+
+# Windows lab artifacts
+$RECYCLE.BIN/
+System Volume Information/
+
+# Temp files
+*.tmp
+*.temp

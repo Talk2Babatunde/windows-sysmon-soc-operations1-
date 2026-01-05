@@ -1,0 +1,13 @@
+# Investigation Summary
+
+Activity: Simulated persistence (T1547.001/T1543.003). Findings: Benign binary in attacker locations; validated via OS (`reg query`, `sc query`). No risk; cleanup: `reg delete ... /f`, `sc delete FakeService`. [file:1]
+
+## Investigation Summary
+
+Persistence-related registry and service activity was detected and analyzed. Despite initial indicators aligning with attacker techniques, further validation confirmed all activity was legitimate and expected.
+
+No containment or remediation actions were required.
+
+### SOC Decision Statement
+
+Based on validation results, the incident was closed as benign activity. No containment or eradication actions were required.

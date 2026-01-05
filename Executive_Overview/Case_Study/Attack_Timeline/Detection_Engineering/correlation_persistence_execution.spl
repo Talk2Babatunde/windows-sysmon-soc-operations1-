@@ -1,0 +1,2 @@
+index=sysmon EventCode IN (1,13)
+| stats values(EventCode) values(Image) values(TargetObject) by User Hostname
