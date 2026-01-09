@@ -75,4 +75,12 @@ This investigation demonstrates the importance of analyst-led validation, emphas
 
 A time-ordered correlation of authentication, persistence, and execution events was created to validate activity flow and confirm the absence of malicious progression.
 
+| Time Range              | Event                        | Evidence           | Interpretation                                      |
+| ----------------------- | ---------------------------- | ------------------ | --------------------------------------------------- |
+| 2025-12-11 → 2026-01-02 | Registry Run Key Modified    | Sysmon Event ID 13 | Persistence mechanism identified; Repeated on logon |
+| 2025-12-11 → 2026-01-02 | msedge.exe executed          | Registry Run entry | Legitimate application auto-start                   |
+| N/A                     | Single user: Babat           | User field         | No account compromise                               |
+| N/A                     | Single host: DESKTOP-66L7IHQ | Hostname           | No lateral movement                                 |
+| N/A                     | No anomalies                 | Path validation    | No unknown binaries; No malicious persistence       |
+
 (Timeline table included separately in repository for reference.)
