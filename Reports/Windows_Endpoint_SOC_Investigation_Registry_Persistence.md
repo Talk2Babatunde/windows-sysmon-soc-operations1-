@@ -22,37 +22,37 @@ This step ensured that elevated permissions were not being abused by unauthorize
 ### Outcome:
 Only expected SYSTEM-level activity was observed. No evidence of privilege escalation abuse or anomalous user elevation was detected.
 
-Step 2: PowerShell Activity Analysis
+### Step 2: PowerShell Activity Analysis
 
 PowerShell activity was analyzed using PowerShell Script Block Logging (Event ID 4104) and Sysmon process execution events.
 
-Outcome:
+### Outcome:
 No encoded commands, suspicious script content, or attacker-controlled PowerShell activity was identified. Observed executions aligned with normal administrative or system behavior.
 
-Step 3: Persistence Mechanism Detection
+### Step 3: Persistence Mechanism Detection
 
 Persistence techniques were evaluated across multiple vectors commonly abused by attackers:
 
-Registry Run / RunOnce keys
+**Registry Run / RunOnce keys**
 
-Windows Services
+**Windows Services**
 
-Scheduled Tasks (Event ID 4698)
+**Scheduled Tasks (Event ID 4698)**
 
 Correlation queries were used to link persistence events with execution activity to determine whether persistence resulted in malicious follow-on actions.
 
-Outcome:
+### Outcome:
 No unauthorized services or scheduled tasks were created. Registry persistence activity was limited to known, legitimate applications.
 
 ## Findings
 
-Privilege Escalation:
+### Privilege Escalation:
 SYSTEM privileges were present only where expected. No misuse by standard user accounts was detected.
 
-PowerShell Activity:
+### PowerShell Activity:
 No malicious or suspicious PowerShell execution was identified during the investigation period.
 
-Registry Persistence:
+### Registry Persistence:
 A registry Run key entry was observed corresponding to Microsoft Edge auto-launch behavior.
 The binary was:
 
