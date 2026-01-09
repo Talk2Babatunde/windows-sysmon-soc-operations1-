@@ -1,4 +1,4 @@
-#Windows Endpoint SOC Investigation – Registry Persistence Validation
+# Windows Endpoint SOC Investigation – Registry Persistence Validation
 
 ## Objective
 
@@ -19,7 +19,7 @@ Used to monitor authentication activity, privilege escalation, and scheduled tas
 Queries were executed against Windows Security Event ID 4672 to identify assignments of special privileges.
 This step ensured that elevated permissions were not being abused by unauthorized users.
 
-Outcome:
+### Outcome:
 Only expected SYSTEM-level activity was observed. No evidence of privilege escalation abuse or anomalous user elevation was detected.
 
 Step 2: PowerShell Activity Analysis
