@@ -1,4 +1,4 @@
-# Windows Endpoint SOC Investigation – Registry Persistence Validation
+#Windows Endpoint SOC Investigation – Registry Persistence Validation
 
 ## Objective
 
