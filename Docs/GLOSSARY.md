@@ -1,6 +1,8 @@
 # Glossary of SOC Investigation Terms
 
-## Local Interactive User: **A security context indicating that a user is logged into the machine directly (via keyboard/mouse) or via a remote desktop session. In your investigation, seeing the user Babat confirms the activity is tied to a known, authenticated human session rather than an automated system process.
+## Local Interactive User: 
+
+**A security context indicating that a user is logged into the machine directly (via keyboard/mouse) or via a remote desktop session. In your investigation, seeing the user Babat confirms the activity is tied to a known, authenticated human session rather than an automated system process.
 **
 ## Persistence: **A technique used by both legitimate software and attackers to ensure a program or script restarts automatically after a system reboot. Common persistence locations include "Run" registry keys.
 **
