@@ -9,7 +9,9 @@ This case study documents a simulated attack lifecycle targeting a Windows 10 en
 To generate realistic telemetry without using malware, I leveraged Living-off-the-Land Binaries (LOLBins):
 
 **Initial Foothold:** Simulated brute-force attempts via runas.
+
 **Persistence Mechanism:** * reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v FakeUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"
+
 **Privilege Escalation Simulation:** sc create FakeService binPath= "C:\Windows\System32\notepad.exe" start= auto
 
 ## 3. Splunk Detection Logic
@@ -30,7 +32,9 @@ Splunk SPL Query
 ### B. Registry Persistence Monitoring 
 
 Using Sysmon Event ID 13, I monitored the specific "Run" keys that attackers use to survive reboots.
+
 Splunk SPL Query
+
       index=sysmon EventCode=13 TargetObject="*\\CurrentVersion\\Run*"
       | table _time, User, Image, TargetObject, Details
 
