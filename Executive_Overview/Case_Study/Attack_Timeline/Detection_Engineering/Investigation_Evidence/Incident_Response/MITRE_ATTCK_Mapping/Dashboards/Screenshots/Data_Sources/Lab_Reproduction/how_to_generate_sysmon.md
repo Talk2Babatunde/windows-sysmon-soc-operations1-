@@ -6,9 +6,11 @@ This guide outlines the exact steps to reproduce the telemetry used in this inve
 
 To enhance native Windows logging, Sysmon must be installed with a high-fidelity configuration (e.g., SwiftOnSecurity).
 
-Command: ```bash sysmon.exe -accepteula -i sysmonconfig.xml
+Command: 
 
-Validation: Run sc query sysmon64 to ensure the service is active.
+      ```bash sysmon.exe -accepteula -i sysmonconfig.xml
+
+**Validation:** Run sc query sysmon64 to ensure the service is active.
 
 ## 2. Credential Stress Simulation (T1110)
 
@@ -44,6 +46,10 @@ Bash
 
 To return the endpoint to a baseline state and prevent persistent execution of test binaries:
 
-Remove Registry Key:       reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v FakeUpdater /f
+Remove Registry Key:       
+      
+      reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v FakeUpdater /f
 
-Delete Scheduled Task:       schtasks /delete /tn "UpdaterTask" /f
+Delete Scheduled Task:       
+      
+      schtasks /delete /tn "UpdaterTask" /f
