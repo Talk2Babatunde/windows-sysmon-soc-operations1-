@@ -1,18 +1,48 @@
-# Log Sources
+# 📊 Telemetry Coverage & Data Integrity
 
-- Sysmon: EventCodes 12,13,14 (registry/service); config includes RegistryEvent=*Run*,*Services*.
-- Windows Security: Ingested via Splunk; 8,260+ events baseline.
-- Verified: `sc query sysmon64`; ingestion working. [file:1]
+## The "Data Reality Check"
 
-## Log Sources
+In a production SOC, detection is only as good as the underlying telemetry. Before writing detection logic, I performed a Telemetry Coverage Validation to ensure no visibility gaps existed across the endpoint's security-critical event logs.
 
-- Sysmon Operational Logs
-- Windows Registry Telemetry
-- Process Execution Events
+## 1. Primary Log Sources
 
-All logs were ingested into Splunk for analysis.
+| Source Type      | Visibility Provided           | Critical Event IDs                           |
+| ---------------- | ----------------------------- | -------------------------------------------- |
+| Windows Security | Authentication & Audit Policy | 4624 (Success), 4625 (Failure), 4698 (Tasks) |
+| Sysmon           | Deep Endpoint Forensics       | 1 (Process), 12/13/14 (Registry), 11 (File)  |
+| PowerShell       | Script Execution              | 4104 (Script Block Logging)                  |
 
-![Uploading persistence 2.png…]()
+## 2. Ingestion Validation (The "Heartbeat" Search)
 
+I ran the following SPL to confirm that all three critical data streams were actively reporting and that the event volume matched the expected baseline for an active workstation.
 
-C:\Users\HP\Desktop\persistence 2.png 
+SPL Query:
+
+      index=windows OR index=sysmon 
+      | stats count by sourcetype, host 
+      | rename count as "Event Count", sourcetype as "Log Source"
+      | sort - "Event Count"
+
+**Analyst Observation:** * Confirmed 293,826+ total events ingested.
+
+**WinEventLog:** Security (8,260+ baseline events) provides the authoritative authentication trail.
+
+**XmlWinEventLog:** Microsoft-Windows-Sysmon/Operational provides the high-fidelity process and registry telemetry required for T1547.001 mapping.
+
+## 3. Telemetry Enrichment Strategy
+
+To go beyond standard logging, I implemented a SOC-grade Sysmon configuration (SwiftOnSecurity). This enables Registry Monitoring for specific high-value keys:
+
+      RegistryEvent = *CurrentVersion\Run*
+
+      RegistryEvent = *CurrentVersion\RunOnce*
+
+      RegistryEvent = *System\CurrentControlSet\Services*
+
+## 4. Verification of Service Health
+
+Manual verification was performed on the endpoint to ensure the data pipeline was healthy at the source:
+
+**Command:** sc query sysmon64 (Status: RUNNING)
+
+**Policy Check:** auditpol /get /category:"Object Access" (Status: Success enabled for Scheduled Tasks)
