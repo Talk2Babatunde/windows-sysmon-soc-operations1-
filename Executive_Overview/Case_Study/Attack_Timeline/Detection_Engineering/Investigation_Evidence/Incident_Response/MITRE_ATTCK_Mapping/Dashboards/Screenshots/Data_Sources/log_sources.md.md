@@ -11,3 +11,5 @@
 - Process Execution Events
 
 All logs were ingested into Splunk for analysis.
+
+C:\Users\HP\Desktop\persistence 2.png 
