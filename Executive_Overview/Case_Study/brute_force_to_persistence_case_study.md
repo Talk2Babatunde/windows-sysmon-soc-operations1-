@@ -16,17 +16,21 @@ To generate realistic telemetry without using malware, I leveraged Living-off-th
 
 ### A. Correlation of Credential Stress
 
-Most analysts look for failed logins. I looked for the Pivot—where a failure streak ends in a success.Splunk SPLindex=windows (EventCode=4625 OR EventCode=4624) 
-| transaction Account_Name maxspan=10m 
-| where eventcount > 5 AND last(EventCode)=4624
-| table _time, Account_Name, eventcount, src_ip
+Most analysts look for failed logins. I looked for the Pivot—where a failure streak ends in a success.
+
+Splunk SPL Query
+
+      index=windows (EventCode=4625 OR EventCode=4624) 
+      | transaction Account_Name maxspan=10m 
+      | where eventcount > 5 AND last(EventCode)=4624
+      | table _time, Account_Name, eventcount, src_ip
 
 **Analyst Note:** This query identifies a "Successful Brute Force" by finding accounts with multiple failures followed by a single success within a 10-minute window.
 
 ### B. Registry Persistence Monitoring 
 
-Using Sysmon Event ID 13, I monitored the specific "Run" keys that attackers use to survive reboots.Splunk SPL
-
+Using Sysmon Event ID 13, I monitored the specific "Run" keys that attackers use to survive reboots.
+Splunk SPL Query
       index=sysmon EventCode=13 TargetObject="*\\CurrentVersion\\Run*"
       | table _time, User, Image, TargetObject, Details
 
