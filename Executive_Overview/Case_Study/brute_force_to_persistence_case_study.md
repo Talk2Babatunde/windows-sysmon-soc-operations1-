@@ -44,9 +44,9 @@ Stop! An alert is not an incident. Before escalating, I performed Contextual Val
 
 | Validation Check  | Finding                               | Verdict                                              |
 | ----------------- | ------------------------------------- | ---------------------------------------------------- |
-| User Context      | User: Babat                           | ✅ Low Risk: Local interactive session via EID 4624   |
-| Binary Integrity  | Path: C:\\Windows\\System32\\notepad.exe | ✅ Benign: Standard path, signed Microsoft executable |
-| Temporal Analysis | Activity during business hours        | ✅ Expected: Aligns with normal maintenance windows   |
+| User Context      |**User:** Babat                           |  **Low Risk:** Local interactive session via EID 4624   |
+| Binary Integrity  | **Path:** C:\\Windows\\System32\\notepad.exe |  **Benign:** Standard path, signed Microsoft executable |
+| Temporal Analysis | Activity during business hours        |  **Expected:** Aligns with normal maintenance windows   |
 
 **Final Verdict:** BENIGN. The activity, while matching an attacker technique, was verified as a local administrative test. No escalation required.
 
