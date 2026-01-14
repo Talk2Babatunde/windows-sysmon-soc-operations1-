@@ -1,30 +1,49 @@
-# Brute Force to Persistence Case Study
+# From Brute Force to Registry Persistence 
 
-**Scenario**: Attacker gains initial access via brute force, escalates via PowerShell, persists using registry Run keys and services—common in RATs/info-stealers. [file:1]
+## 1. Executive Summary
 
-**Simulation Steps** (Safe, LOLBin-only):
-1. User-level: `reg add HKCU\Run /v FakeUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"` – Triggers on logon.
-2. System-wide: `reg add HKLM\Run /v SystemUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"` (admin).
-3. Service: `sc create FakeService binPath= "C:\Windows\System32\notepad.exe" start= auto`.
+This case study documents a simulated attack lifecycle targeting a Windows 10 endpoint. The goal was to validate the transition from Credential Abuse (T1110) to Persistence (T1547.001) and test the analyst's ability to distinguish between automated malware behavior and local interactive administration.
 
-**Detection Evidence**: Sysmon EventCode 13 (registry value set) on TargetObject=*Run*, Details=notepad.exe, User=Babat/SYSTEM. Splunk confirmed post-reboot execution. [file:1]
+## 2. The Attack Simulation (Telemetry Generation)
 
-**Detection Evidence**:
-Splunk: index=windows (4625 OR 4624) | transaction AccountName maxspan=10m | where failurecount>=2 AND successcount>=1
-Sysmon: EventCode=13 TargetObject=Run Details="C:\Windows\System32\notepad.exe"
+To generate realistic telemetry without using malware, I leveraged Living-off-the-Land Binaries (LOLBins):
 
-## Detection Validation (Critical SOC Step)
+**Initial Foothold:** Simulated brute-force attempts via runas.
+**Persistence Mechanism:** * reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v FakeUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"
+**Privilege Escalation Simulation:** sc create FakeService binPath= "C:\Windows\System32\notepad.exe" start= auto
 
-Although persistence-related registry modifications were detected, escalation was intentionally paused to perform validation.
+## 3. Splunk Detection Logic
 
-Validation steps included:
-- Verifying user context (interactive user vs SYSTEM)
-- Confirming binary path and signature
-- Reviewing timing relative to system activity
-- Checking for business justification
+### A. Correlation of Credential Stress
 
-This process prevented misclassification of legitimate Windows behavior as malicious activity.
+Most analysts look for failed logins. I looked for the Pivot—where a failure streak ends in a success.Splunk SPLindex=windows (EventCode=4625 OR EventCode=4624) 
+| transaction Account_Name maxspan=10m 
+| where eventcount > 5 AND last(EventCode)=4624
+| table _time, Account_Name, eventcount, src_ip
 
+**Analyst Note:** This query identifies a "Successful Brute Force" by finding accounts with multiple failures followed by a single success within a 10-minute window.
 
+### B. Registry Persistence Monitoring 
 
-**Lessons**: User-hive (HKCU) evades admin detection; baseline vs. anomaly critical.
+Using Sysmon Event ID 13, I monitored the specific "Run" keys that attackers use to survive reboots.Splunk SPL
+
+      index=sysmon EventCode=13 TargetObject="*\\CurrentVersion\\Run*"
+      | table _time, User, Image, TargetObject, Details
+
+## 4. The Validation Pivot
+
+Stop! An alert is not an incident. Before escalating, I performed Contextual Validation:
+
+| Validation Check  | Finding                               | Verdict                                              |
+| ----------------- | ------------------------------------- | ---------------------------------------------------- |
+| User Context      | User: Babat                           | ✅ Low Risk: Local interactive session via EID 4624   |
+| Binary Integrity  | Path: C:\\Windows\\System32\\notepad.exe | ✅ Benign: Standard path, signed Microsoft executable |
+| Temporal Analysis | Activity during business hours        | ✅ Expected: Aligns with normal maintenance windows   |
+
+**Final Verdict:** BENIGN. The activity, while matching an attacker technique, was verified as a local administrative test. No escalation required.
+
+## 5. Lessons for the SOC
+
+**Telemetry is Policy:** Event ID 4698 (Scheduled Tasks) was missing until I manually updated the Advanced Audit Policy. Visibility is a requirement, not a default.
+
+**Context over Content:** A registry key is just data. A registry key + a SYSTEM user context is a Crisis. A registry key + a Local User context is a Checklist.
