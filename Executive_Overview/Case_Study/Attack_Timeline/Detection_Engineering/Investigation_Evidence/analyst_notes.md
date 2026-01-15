@@ -10,11 +10,11 @@
 
 The investigation was initiated following the detection of multiple Registry Value Set (Sysmon EID 13) events targeting known persistence hives (Run / RunOnce).
 
-Total Events Scanned: 265 registry modifications.
+**Total Events Scanned:** 265 registry modifications.
 
-Scope: 23 unique registry keys across HKCU and HKLM.
+**Scope:** 23 unique registry keys across HKCU and HKLM.
 
-Primary Observed Activity: High-volume telemetry associated with Microsoft Edge and Windows Update background processes.
+**Primary Observed Activity:** High-volume telemetry associated with Microsoft Edge and Windows Update background processes.
 
 ## 2. Technical Findings & Evidence
 
