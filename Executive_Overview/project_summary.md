@@ -1,6 +1,6 @@
 # 🛡️ Executive Summary: Endpoint Detection & Visibility Engineering
 
-## 1. Mission Objective
+## 1. Objective
 
 This project establishes a high-fidelity Security Operations Center (SOC) pipeline designed to detect and validate post-exploitation persistence mechanisms. By leveraging Sysmon and Splunk, I engineered a workflow that bridges the gap between raw telemetry ingestion and actionable, context-aware incident response.
 
