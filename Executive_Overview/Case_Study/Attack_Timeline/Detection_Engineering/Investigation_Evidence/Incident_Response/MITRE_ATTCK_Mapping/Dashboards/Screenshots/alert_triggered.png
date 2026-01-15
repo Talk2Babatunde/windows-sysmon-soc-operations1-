@@ -1,0 +1,119 @@
+# Triggered Alerts
+
+The Alert Name: Something professional like CRITICAL: Unauthorized Registry Persistence Detected (T1547.001).
+
+The Severity: It should be marked as High or Critical (Red).
+
+The Trigger Time: This should align with your "Attack Timeline" (T1 or T2).
+
+The Results Preview: A table showing the specific fields: User: Babat, Host: DESKTOP-66L7IHQ, and TargetObject: ...\Run\FakeUpdater.
+
+2. What to put in the alerts.md (The Documentation)
+
+Don't just upload the image. Create a file named 03_Detection_Engineering/alerts.md to explain the logic behind the alert.
+
+Paste this content into that file:
+
+
+# 🚨 Alert Logic & Configuration
+
+### **Alert Name:** Persistence via Registry Run Keys (T1547.001)
+**Description:** Detects unauthorized modifications to Windows Run/RunOnce keys by non-standard processes.
+
+---
+
+### **1. The Detection Engine (SPL)**
+This alert is powered by a high-fidelity correlation query that filters out known system noise while capturing singleton events in sensitive registry hives.
+
+```spl
+index=sysmon EventCode=13 (TargetObject="*\\CurrentVersion\\Run*" OR TargetObject="*\\CurrentVersion\\RunOnce*")
+| search NOT (Image="C:\\Windows\\*" OR Image="C:\\Program Files\\*")
+| table _time, Computer, User, Image, TargetObject, Details
+
+2. Alert Configuration Settings
+
+To maximize SOC efficiency, I configured the following threshold and throttling settings:
+
+| Setting         | Value                     | Rationale                                        |
+| --------------- | ------------------------- | ------------------------------------------------ |
+| Condition       | Number of Results > 0     | Immediate notification for high-risk keys.       |
+| Alert Frequency | Real-time                 | Critical for catching persistence before reboot. |
+| Throttle        | 60 Minutes (per Computer) | Prevents alert storms during system updates.     |
+| Severity        | High (Red)                | Persistence is a Tier-1 indicator of compromise. |
+
+3. Evidence Screenshot
+Analyst Note: This screenshot confirms the alert successfully triggered for the FakeUpdater simulation. The alert correctly identified the user Babat and the non-standard binary notepad.exe.
+
+In a professional GitHub repository, an `alerts.png` (or `.jpg`) is the **"Money Shot."** It is the visual proof that your Splunk queries actually work and successfully triggered a notification.
+
+To impress your interviewer, this image shouldn't just be a list of results—it should show **Splunk’s Alerting interface.**
+
+---
+
+### **1. What to capture in your `alerts.png**`
+
+You should take a screenshot of the **Splunk "Triggered Alerts" page** or the **"Alerts" tab.** It should contain the following elements:
+
+* **The Alert Name:** Something professional like `CRITICAL: Unauthorized Registry Persistence Detected (T1547.001)`.
+* **The Severity:** It should be marked as **High** or **Critical** (Red).
+* **The Trigger Time:** This should align with your "Attack Timeline" (T1 or T2).
+* **The Results Preview:** A table showing the specific fields: `User: Babat`, `Host: DESKTOP-66L7IHQ`, and `TargetObject: ...\Run\FakeUpdater`.
+
+---
+
+### **2. What to put in the `alerts.md` (The Documentation)**
+
+Don't just upload the image. Create a file named `03_Detection_Engineering/alerts.md` to explain the **logic** behind the alert.
+
+Paste this content into that file:
+
+```markdown
+# 🚨 Alert Logic & Configuration
+
+### **Alert Name:** Persistence via Registry Run Keys (T1547.001)
+**Description:** Detects unauthorized modifications to Windows Run/RunOnce keys by non-standard processes.
+
+---
+
+### **1. The Detection Engine (SPL)**
+This alert is powered by a high-fidelity correlation query that filters out known system noise while capturing singleton events in sensitive registry hives.
+
+```spl
+index=sysmon EventCode=13 (TargetObject="*\\CurrentVersion\\Run*" OR TargetObject="*\\CurrentVersion\\RunOnce*")
+| search NOT (Image="C:\\Windows\\*" OR Image="C:\\Program Files\\*")
+| table _time, Computer, User, Image, TargetObject, Details
+
+```
+
+### **2. Alert Configuration Settings**
+
+To maximize SOC efficiency, I configured the following threshold and throttling settings:
+
+| Setting | Value | Rationale |
+| --- | --- | --- |
+| **Condition** | Number of Results > 0 | Immediate notification for high-risk keys. |
+| **Alert Frequency** | Real-time | Critical for catching persistence before reboot. |
+| **Throttle** | 60 Minutes (per Computer) | Prevents alert storms during system updates. |
+| **Severity** | **High (Red)** | Persistence is a Tier-1 indicator of compromise. |
+
+---
+
+### **3. Evidence Screenshot**
+
+> **Analyst Note:** This screenshot confirms the alert successfully triggered for the `FakeUpdater` simulation. The alert correctly identified the user `Babat` and the non-standard binary `notepad.exe`.
+
+```
+
+---
+
+### **3. Why this **
+
+* **Throttling Logic:** Mentioning "Throttling" shows you understand **resource management.** Every Splunk Admin has dealt with an alert that "blew up" and sent 10,000 emails. Showing you throttled it by "Computer" proves you are thinking about the infrastructure.
+* **Exclusion Logic:** Using `search NOT (Image="C:\\Windows\\*")` proves you are a "Clean" engineer. You aren't just alerting on everything; you are alerting on the **exceptions.**
+* **Real-Time vs. Scheduled:** Knowing when to use a real-time alert (for persistence) shows you understand the **urgency** of the attack lifecycle.
+
+
+> *"I didn't just write a search; I configured a **Production-Ready Alert**. I implemented **Throttling** to prevent alert fatigue and used **Exclusion Logic** to ensure we only catch non-standard binaries. As you can see in the screenshot, the alert triggered exactly when the `FakeUpdater` was created, giving the SOC a real-time 'Lead' on the threat."*
+
+
+```
