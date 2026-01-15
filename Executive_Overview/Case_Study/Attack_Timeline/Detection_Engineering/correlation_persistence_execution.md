@@ -1,15 +1,15 @@
-# correlation_persistence_execution.spl
+# Correlation_persistence_execution.spl
 
-Goal: This show correlation (Linking two different behaviors). This query looks for an account that failed to log in multiple times, then succeeded, and then immediately modified a registry run key. This is exactly what a senior Splunk Admin wants to see.
+**Goal:** This show correlation (Linking two different behaviors). This query looks for an account that failed to log in multiple times, then succeeded, and then immediately modified a registry run key. This is exactly what a senior Splunk Admin wants to see.
 
-Splunk SPL
+**Splunk SPL**
 
       (index=windows EventCode=4625) OR (index=sysmon EventCode=13 TargetObject="*\\CurrentVersion\\Run*")
       | transaction User maxspan=1h
       | where eventcount > 1 AND count(eval(EventCode=4625)) > 0 AND count(eval(EventCode=13)) > 0
       | table _time, User, eventcount, TargetObject, Details
 
-Why this is important, because: 
+**Why this is important, because:**
 
 It allows me to use transaction to group events by User.
 
