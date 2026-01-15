@@ -23,6 +23,9 @@ SPL Query:
       | rename count as "Event Count", sourcetype as "Log Source"
       | sort - "Event Count"
 
+
+Telemetry Health Check: Verifying multi-source ingestion across Sysmon and Windows Event Logs to ensure zero visibility gaps.
+
 **Analyst Observation:** * Confirmed 293,826+ total events ingested.
 
 **WinEventLog:** Security (8,260+ baseline events) provides the authoritative authentication trail.
