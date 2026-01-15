@@ -33,4 +33,4 @@ This investigation successfully ingested and analyzed 293,826 events from a Wind
 
 In a production environment, this pipeline represents Operational Efficiency. By automating the detection of encoded PowerShell and registry anomalies, and providing analysts with a structured "Validation Logic," we reduce Mean Time to Respond (MTTR) and ensure the SOC remains focused on high-confidence threats.
 
-Contextual Triage: Developed a validation framework that distinguishes between a SYSTEM process (High Risk) and a Local Interactive process (Benign User Activity).
+**Contextual Triage:** Developed a validation framework that distinguishes between a SYSTEM process (High Risk) and a Local Interactive process (Benign User Activity).
