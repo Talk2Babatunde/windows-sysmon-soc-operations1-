@@ -1,6 +1,6 @@
 # 📊 SOC Visibility Dashboard: Persistence & Obfuscation
 
-###Dashboard Design Philosophy
+**Dashboard Design Philosophy**
 
 This dashboard was engineered to provide a "Single Pane of Glass" for incident responders. Rather than pivoting between multiple search heads, this view correlates telemetry from WinEventLog:Security and Sysmon to visualize the attack lifecycle in real-time.
 
@@ -48,7 +48,7 @@ Visual: Statistics Table with Conditional Formatting (Red text for HKLM changes)
 
 **4. Behavioral Correlation (Brute Force → Persistence)**
 
-The "Wow" panel. This identifies the pattern of an account being compromised before a persistence mechanism is installed.
+This identifies the pattern of an account being compromised before a persistence mechanism is installed.
 
 **Query:**
 
@@ -70,3 +70,4 @@ To ensure this dashboard scales to an enterprise environment, all fields are map
 | Logon Activity   | Authentication     | WinEventLog:Security  |
 | Process Tracking | Endpoint.Processes | XmlWinEventLog:Sysmon |
 | Registry Changes | Endpoint.Registry  | XmlWinEventLog:Sysmon |
+
