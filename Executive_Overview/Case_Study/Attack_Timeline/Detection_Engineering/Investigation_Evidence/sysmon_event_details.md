@@ -1,8 +1,8 @@
 # High-Fidelity Telemetry with Sysmon
 
-The "Visibility Gap" in Standard Logging
+The **"Visibility Gap"** in Standard Logging
 
-Native Windows Security logs (Event ID 4688) often provide the "Who" and "When," but they lack the forensic "How." In this project, I integrated Sysmon (System Monitor) to provide the deep-level telemetry required for high-confidence investigation and automated correlation.
+Native Windows Security logs (Event ID 4688) often provide the **"Who"** and **"When,"** but they lack the forensic **"How."** In this project, I integrated Sysmon (System Monitor) to provide the deep-level telemetry required for high-confidence investigation and automated correlation.
 
 ## 1. Anatomy of an Attack: Sysmon Event ID 1 (Process Creation)
 
