@@ -6,7 +6,7 @@ In a production SOC, the goal of detection engineering is to maximize "Signal" a
 
 ## 1. Case Study: Registry Run Key Modification (T1547.001)
 
-**The Alert:** A modification was detected in the HKCU\...\CurrentVersion\Run registry hive.
+**The Alert:** A modification was detected in the **HKCU\...\CurrentVersion\Run registry hive.**
 
 **The Disposition:** False Positive (Benign Activity)
 
@@ -36,7 +36,7 @@ Splunk SPL
 
 **False Positive** Reduction: ~15% reduction in registry-based alert volume.
 
-**Analyst Efficiency:** Allows the team to focus on non-standard paths (e.g., C:\Users\Public\) and unsigned binaries.
+**Analyst Efficiency:** Allows the team to focus on non-standard paths (e.g.,**C:\Users\Public\**) and unsigned binaries.
 
 ## 3. Behavioral Baselines vs. Static IOCs
 
