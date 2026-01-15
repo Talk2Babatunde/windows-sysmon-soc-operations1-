@@ -3,8 +3,11 @@
 ## 1. Incident Overview
 
 **Incident ID:** 2026-JAN-15-SEC-001
+
 **Trigger:** Alert triggered on T1547.001 (Registry Run Key Modification) and T1053.005 (Scheduled Task Creation).
+
 **Scope:** 1 Host (DESKTOP-66L7IHQ), 1 User (Babat).
+
 **Verdict:** Closed - Benign Simulation / Controlled Test.
 
 ## 2. Evidence & Timeline Reconstruction
@@ -29,7 +32,9 @@ The investigation analyzed a 293k event dataset to correlate a series of suspici
  
  **Verdict:** Benign Activity.
 
-Rationale: 1. The naming conventions (Fake*) and the use of benign binaries (notepad.exe) were consistent with a Detection Engineering Simulation. 
+**Rationale:**
+
+1. The naming conventions (Fake*) and the use of benign binaries (notepad.exe) were consistent with a Detection Engineering Simulation. 
 
 2. No indicators of secondary attack stages were found (e.g., credential dumping, lateral movement, or network exfiltration).
 
