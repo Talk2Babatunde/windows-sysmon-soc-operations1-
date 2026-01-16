@@ -53,3 +53,5 @@ This project emphasizes **decision-making and validation**, not just alert gener
 
 This project emphasizes **decision-making and validation**, not just alert generation.
 
+### Note: **"Future iterations of this project will incorporate Atomic Red Team (Invoke-AtomicRedTeam) to automate the validation of detection logic across the full MITRE ATT&CK spectrum."**
+
