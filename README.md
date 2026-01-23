@@ -4,6 +4,9 @@ This repository demonstrates how a SOC analyst validates high-risk Windows persi
 
 Demonstrated complete attack chain on Windows endpoint DESKTOP-66L7IHQ: Brute force breakthrough (T1110: 166+ Event ID 4625 failures → 4624 successes in 10min windows), PowerShell escalation (T1059.001 encoded commands), persistence via Registry Run Keys (T1547.001: HKCU/HKLM FakeUpdater/SystemUpdater by Babat/SYSTEM) and Services (T1543.003: FakeService), validated with Sysmon telemetry (293,826+ events processed in Splunk). [file:1][file:2]
 
+<img width="1016" height="644" alt="image1" src="https://github.com/user-attachments/assets/8baea5f2-b66a-41cf-8734-39d32bcf4621" />
+
+
 ## Key Capabilities
 - Simulated MITRE ATT&CK T1547.001 (Registry Run Keys), T1543.003 (Services) using benign binaries (notepad.exe as C:\Windows\System32\notepad.exe).
 - Sysmon EventCodes 12/13 captured registry/service modifications by users "Babat" (user-level) and SYSTEM (system-wide).
