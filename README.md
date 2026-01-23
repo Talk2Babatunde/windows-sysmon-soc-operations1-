@@ -6,6 +6,8 @@ Demonstrated complete attack chain on Windows endpoint DESKTOP-66L7IHQ: Brute fo
 
 <img width="1016" height="644" alt="image1" src="https://github.com/user-attachments/assets/8baea5f2-b66a-41cf-8734-39d32bcf4621" />
 
+This dashboard demonstrates a 'Skills-First' approach to detection. By correlating raw Sysmon telemetry with Windows Security Event ID 4625, I’ve engineered a high-fidelity view that distinguishes between failed user logons and coordinated credential abuse, significantly reducing false-positive fatigue for Tier 1 analysts.
+
 
 ## Key Capabilities
 - Simulated MITRE ATT&CK T1547.001 (Registry Run Keys), T1543.003 (Services) using benign binaries (notepad.exe as C:\Windows\System32\notepad.exe).
