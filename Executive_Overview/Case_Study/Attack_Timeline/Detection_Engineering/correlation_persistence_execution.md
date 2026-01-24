@@ -1,6 +1,6 @@
 # Correlation_persistence_execution.spl
 
-**Goal:** This show correlation (Linking two different behaviors). This query looks for an account that failed to log in multiple times, then succeeded, and then immediately modified a registry run key. This is exactly what a senior Splunk Admin wants to see.
+**Goal:** This show correlation (Linking two different behaviors). This query looks for an account that failed to log in multiple times, then succeeded, and then immediately modified a registry run key. 
 
 **Splunk SPL**
 
@@ -8,6 +8,10 @@
       | transaction User maxspan=1h
       | where eventcount > 1 AND count(eval(EventCode=4625)) > 0 AND count(eval(EventCode=13)) > 0
       | table _time, User, eventcount, TargetObject, Details
+
+
+<img width="988" height="363" alt="image22" src="https://github.com/user-attachments/assets/41b12aa0-7c98-4b7c-8621-af2d6cdea574" />
+
 
 **Why this is important, because:**
 
