@@ -71,8 +71,9 @@ To ensure this dashboard scales to an enterprise environment, all fields are map
 | Process Tracking | Endpoint.Processes | XmlWinEventLog:Sysmon |
 | Registry Changes | Endpoint.Registry  | XmlWinEventLog:Sysmon |
 
-### View the full dashaboard below: 
+**View the full dashaboard below:**
 https://1drv.ms/b/c/b3322d5b87e2e949/IQDUCInUJB0QQawr_191EDbZAdapLm9blTWr-JfqM5ZjyZE?e=xacpcI
+
 
 
 
