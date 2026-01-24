@@ -6,7 +6,11 @@ Demonstrated complete attack chain on Windows endpoint DESKTOP-66L7IHQ: Brute fo
 
 <img width="1016" height="644" alt="image1" src="https://github.com/user-attachments/assets/8baea5f2-b66a-41cf-8734-39d32bcf4621" />
 
-This dashboard demonstrates a 'Skills-First' approach to detection. By correlating raw Sysmon telemetry with Windows Security Event ID 4625, I’ve engineered a high-fidelity view that distinguishes between failed user logons and coordinated credential abuse, significantly reducing false-positive fatigue for Tier 1 analysts.
+<p align="center">
+  <img width="1016" height="644" alt="Splunk SOC Dashboard" src="https://github.com/user-attachments/assets/8baea5f2-b66a-41cf-8734-39d32bcf4621" />
+  <br>
+  <small><i>This dashboard demonstrates a 'Skills-First' approach to detection. By correlating raw Sysmon telemetry with Windows Security Event ID 4625, I’ve engineered a high-fidelity view that distinguishes between failed user logons and coordinated credential abuse, significantly reducing false-positive fatigue for Tier 1 analysts.</i></small>
+</p>
 
 
 ## Key Capabilities
