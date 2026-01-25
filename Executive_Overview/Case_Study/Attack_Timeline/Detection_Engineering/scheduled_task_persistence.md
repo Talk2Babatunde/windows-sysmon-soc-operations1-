@@ -29,4 +29,5 @@ To reduce alert fatigue for Tier 1 analysts, I developed a more sophisticated qu
 <i><b>Figure:</b> Evidence of successful noise reduction. The final query successfully filtered out background system tasks (Author: Microsoft Corporation), allowing the <b>'cmd.exe'</b> task created by user <b>'Babat'</b> to surface immediately as a high-priority lead.</i> </p>
 
 
+
 **My final take:** This detection relies on Event ID 4698. Crucially, I identified that this telemetry is not enabled by default in Windows. I updated the 'Advanced Audit Policy' for 'Object Access' to ensure visibility into T1053.005."
