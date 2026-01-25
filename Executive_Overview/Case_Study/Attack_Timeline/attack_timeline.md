@@ -19,11 +19,12 @@ This timeline reconstructs a multi-stage persistence attempt on DESKTOP-66L7IHQ.
 
 The attacker (simulated) attempted to hide a persistence trigger in the user hive.
 
-SPL Evidence: ```spl 
+**SPL Query:** 
+     
      index=sysmon EventCode=13 TargetObject="\Run\Fake" 
      | table _time, User, TargetObject, Details
 
-> **Analyst Note:** While `HKLM` requires Admin, `HKCU` modifications by the user `Babat` show how threats can persist without immediate administrative privileges.
+> **Note:** While `HKLM` requires Admin, `HKCU` modifications by the user `Babat` show how threats can persist without immediate administrative privileges.
 
 
 
