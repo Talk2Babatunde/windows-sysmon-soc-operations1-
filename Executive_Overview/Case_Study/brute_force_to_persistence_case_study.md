@@ -11,6 +11,7 @@ To generate realistic telemetry without using malware, I leveraged Living-off-th
 **Initial Foothold:** Simulated brute-force attempts via runas.
 
 **Persistence Mechanism:** * 
+     
       reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v FakeUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"
 
 **Privilege Escalation Simulation:** 
