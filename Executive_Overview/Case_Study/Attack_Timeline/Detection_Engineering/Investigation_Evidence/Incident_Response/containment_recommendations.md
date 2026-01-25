@@ -26,7 +26,7 @@ To prevent the technique (T1547.001) from being used again, I recommend the foll
 | ASR Rules         | Attack Surface Reduction (Rule: Block process creations from Office) | Prevents malicious attachments from achieving persistence.      |
 | Service Control   | Group Policy: Restricted Groups                                      | Limits local users from creating or modifying Windows Services. |
 
-**3. Proactive Hunting (The "Lookback")**
+## 3. Proactive Hunting (The "Lookback")
 
 Once the immediate threat is contained, the SOC should perform a "Lookback" to ensure no other endpoints are affected.
 
