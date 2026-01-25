@@ -8,9 +8,8 @@ To detect and analyze obfuscated PowerShell commands. Attackers frequently use t
 
 The first step is identifying any PowerShell instance using encoding flags. This query provides a broad view of suspicious command-line activity.
 
-SPL Query:
+**Splunk SPL**
 
-Splunk SPL
       index=sysmon EventCode=1 (CommandLine="*-enc*" OR CommandLine="*-encodedcommand*")
       | table _time, host, User, Image, CommandLine
       | rename CommandLine AS "Obfuscated_Command"
