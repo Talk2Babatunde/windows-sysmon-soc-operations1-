@@ -26,14 +26,13 @@ To determine if the simulated persistence was preceded by unauthorized access, I
 
 **investigation_timeline**
 
-**Query Used:**
-
 Splunk SPL
+
       index=windows (EventCode=4625 OR EventCode=4624)
       | sort _time
       | table _time, host, Account_Name, EventCode, src_ip, Logon_Type
 
-Purpose: Reconstructs the authentication flow to identify possible credential compromise following a burst of repeated failures.
+**Purpose:** Reconstructs the authentication flow to identify possible credential compromise following a burst of repeated failures.
 
 <img width="980" height="616" alt="image2" src="https://github.com/user-attachments/assets/dece62da-187e-4334-92ac-524fb013c94f" />
 
