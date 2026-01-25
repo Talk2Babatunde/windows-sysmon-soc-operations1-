@@ -10,9 +10,12 @@ To generate realistic telemetry without using malware, I leveraged Living-off-th
 
 **Initial Foothold:** Simulated brute-force attempts via runas.
 
-**Persistence Mechanism:** * reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v FakeUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"
+**Persistence Mechanism:** * 
+      reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v FakeUpdater /t REG_SZ /d "C:\Windows\System32\notepad.exe"
 
-**Privilege Escalation Simulation:** sc create FakeService binPath= "C:\Windows\System32\notepad.exe" start= auto
+**Privilege Escalation Simulation:** 
+      
+      sc create FakeService binPath= "C:\Windows\System32\notepad.exe" start= auto
 
 ## 3. Splunk Detection Logic
 
