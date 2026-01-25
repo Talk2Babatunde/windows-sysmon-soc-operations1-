@@ -2,15 +2,20 @@
 
 **Objective**: Demonstrate the transition from basic event monitoring to advanced, high-fidelity detection engineering.
 
-**Phase 1:** Basic Telemetry Capture
+**Phase 1:** Identifying the Visibility Gap (Basic Telemetry Capture)
 
-Initially, I utilized a standard search to verify the ingestion of Event ID 4688 and 4698. While this confirmed data was flowing, the results were cluttered with automated system activity.
+Initially, I ran a standard query to monitor for Event ID 4698 (Scheduled Task Creation). As shown in the evidence below, the query returned zero results despite a task being created on the endpoint.
 
 **Splunk SPL**
 
       index=windows EventCode=4698 
       | rename TaskName as "Scheduled_Task_Name"
       | table _time, Scheduled_Task_Name, Author, Command, User, ComputerName
+
+<img width="968" height="332" alt="image61" src="https://github.com/user-attachments/assets/d81614b5-98ba-4a08-8dfc-9faa026160e9" />
+
+
+<i><b>Figure 1:</b> Initial search for EID 4698 showing 0 events. This confirmed a visibility gap: Windows does not log task creation by default until Advanced Audit Policies are enabled.</i> </p>
 
 
 **Phase 2:** High-Fidelity Engineering 
