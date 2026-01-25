@@ -20,7 +20,26 @@ The investigation analyzed a 293k event dataset to correlate a series of suspici
 
 **PowerShell Profiling:** Identified repeated executions of PowerShell by the Splunk Universal Forwarder. Analysis of the CommandLine confirmed these were native metric collection scripts and not C2 beaconing.
 
-## 3. Validation Logic (The "Pivot")
+## 3. Chronological Attack Chain Correlation
+
+To determine if the simulated persistence was preceded by unauthorized access, I reconstructed the authentication flow.
+
+**investigation_timeline**
+
+**Query Used:**
+
+Splunk SPL
+      index=windows (EventCode=4625 OR EventCode=4624)
+      | sort _time
+      | table _time, host, Account_Name, EventCode, src_ip, Logon_Type
+
+Purpose: Reconstructs the authentication flow to identify possible credential compromise following a burst of repeated failures.
+
+<img width="980" height="616" alt="image2" src="https://github.com/user-attachments/assets/dece62da-187e-4334-92ac-524fb013c94f" />
+
+<i><b>Caption:</b> Reconstructed attack timeline correlating initial failed logon attempts (EID 4625) with subsequent successful logons (EID 4624) to validate the "Brute-Force to Entry" hypothesis.</i> </p>
+
+## 4. Validation Logic (The "Pivot")
 
 | Investigation Step  | Method                  | Result                                                                                   |
 | ------------------- | ----------------------- | ---------------------------------------------------------------------------------------- |
@@ -28,7 +47,7 @@ The investigation analyzed a 293k event dataset to correlate a series of suspici
 | Binary Verification | Sysmon EID 1 (Hashes)   | notepad.exe hash matched known-good Microsoft baseline.                                  |
 | Contextual Analysis | Logon Type Verification | Activity mapped to Logon Type 2 (Interactive) - user-initiated test, not remote exploit. |
 
-## 4. Final Disposition & SOC Decision
+## 5. Final Disposition & SOC Decision
  
  **Verdict:** Benign Activity.
 
@@ -40,7 +59,7 @@ The investigation analyzed a 293k event dataset to correlate a series of suspici
 
 3. The activity aligned exactly with the "Lab Reproduction" timestamps.
 
-## 5. Post-Incident Actions (Hardening)
+## 6. Post-Incident Actions (Hardening)
 
 Even though this was a simulation, I have recommended the following Tuning to improve future response:
 
