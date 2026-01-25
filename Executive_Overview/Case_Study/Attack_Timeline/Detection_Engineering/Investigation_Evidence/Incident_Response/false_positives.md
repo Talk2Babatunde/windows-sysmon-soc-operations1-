@@ -32,6 +32,9 @@ Splunk SPL
       | search NOT (Image="C:\\Program Files (x86)\\Microsoft\\*" AND (Details="*msedge.exe*" OR Details="*msteams.exe*"))
       | stats count by User, Image, TargetObject, Details
 
+
+<img width="969" height="338" alt="image13" src="https://github.com/user-attachments/assets/78f0f69e-aa3f-4a61-857e-ab9b62ab6e61" />
+
 **Impact of Tuning:**
 
 **False Positive** Reduction: ~15% reduction in registry-based alert volume.
