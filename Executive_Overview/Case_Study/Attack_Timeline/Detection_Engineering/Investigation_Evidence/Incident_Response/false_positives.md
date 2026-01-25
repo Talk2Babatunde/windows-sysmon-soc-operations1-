@@ -35,6 +35,12 @@ Splunk SPL
 
 <img width="969" height="338" alt="image13" src="https://github.com/user-attachments/assets/78f0f69e-aa3f-4a61-857e-ab9b62ab6e61" />
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8baea5f2-b66a-41cf-8734-39d32bcf4621" width="900" />
+  <br>
+  <i><b>Triage Impact:</b> Reduced background authentication noise through temporal aggregation, isolating 166 user-targeted failed logon events for high-fidelity investigation.</i>
+</p>
+
 **Impact of Tuning:**
 
 **False Positive** Reduction: ~15% reduction in registry-based alert volume.
