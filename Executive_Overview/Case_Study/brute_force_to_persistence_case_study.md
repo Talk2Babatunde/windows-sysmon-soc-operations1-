@@ -31,7 +31,8 @@ Splunk SPL Query
       | where eventcount > 5 AND last(EventCode)=4624
       | table _time, Account_Name, eventcount, src_ip
 
-**Analyst Note:** This query identifies a "Successful Brute Force" by finding accounts with multiple failures followed by a single success within a 10-minute window.
+
+**Note:** This query identifies a "Successful Brute Force" by finding accounts with multiple failures followed by a single success within a 10-minute window.
 
 ### B. Registry Persistence Monitoring 
 
