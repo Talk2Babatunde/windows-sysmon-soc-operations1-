@@ -36,7 +36,7 @@ Splunk SPL
 
 <img width="980" height="616" alt="image2" src="https://github.com/user-attachments/assets/dece62da-187e-4334-92ac-524fb013c94f" />
 
-<i><b>Caption:</b> Reconstructed attack timeline correlating initial failed logon attempts (EID 4625) with subsequent successful logons (EID 4624) to validate the "Brute-Force to Entry" hypothesis.</i> </p>
+<i><b>Figure 1:</b> Reconstructed attack timeline correlating initial failed logon attempts (EID 4625) with subsequent successful logons (EID 4624) to validate the "Brute-Force to Entry" hypothesis.</i> </p>
 
 ## 4. Validation Logic (The "Pivot")
 
