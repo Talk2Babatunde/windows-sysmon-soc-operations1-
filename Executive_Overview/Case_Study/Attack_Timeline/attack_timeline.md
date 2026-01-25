@@ -13,6 +13,7 @@ This timeline reconstructs a multi-stage persistence attempt on DESKTOP-66L7IHQ.
 | T2: Elevation       | Persistence | System-Wide Service Creation    | Sysmon (EID 12) | TargetObject=FakeService. State: Created/Stopped.                     |
 | T3: Execution       | Persistence | Post-Reboot Process Launch      | Sysmon (EID 1)  | notepad.exe spawned from explorer.exe (User) + services.exe (System). |
 
+
 ## 2. Technical Evidence Deep-Dive
 
 **Stage 1: The Registry Pivot (T1547.001)**
