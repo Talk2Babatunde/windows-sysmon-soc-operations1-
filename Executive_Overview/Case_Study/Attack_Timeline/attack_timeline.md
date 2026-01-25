@@ -2,7 +2,7 @@
 
 **Executive Summary of the Attack Chain**
 
-This timeline reconstructs a multi-stage persistence attempt on DESKTOP-66L7IHQ. By correlating Windows Security Logs with Sysmon Telemetry, I have mapped the progression from initial registry modification to automated execution.
+This timeline reconstructs a multi-stage attack lifecycle on DESKTOP-66L7IHQ. By correlating Windows Security Logs with Sysmon Telemetry, I have mapped the progression from initial Credential Access (Brute Force) to Persistence (Registry/Services/Tasks) and final Execution.
 
 ## 1. Chronological Event Sequence
 
